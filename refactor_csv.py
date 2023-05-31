@@ -3,8 +3,8 @@ import os
 import shutil
 
 
+# Count the number of breaks (line breaks, spaces, or tabs) in a line
 def count_breaks(line):
-    # Count the number of breaks (line breaks, spaces, or tabs) in a line
     return line.count(' ') + line.count('\t')
 
 
@@ -21,23 +21,16 @@ def split_and_save_data(input_file, output_file):
                     print(f"Missing data in '{input_file}'\n")
                     return
 
-        # df = pd.read_csv(input_file, sep='\t', na_values='(null)')
         df = pd.read_csv(input_file, sep='\t', na_values='(null)').fillna(0)
 
-        # df = df.dropna()
-        # fill the nan values with 0
-        # df = df.fillna(0)
-
         # typo in FlownPassengers column name
-        # df = df.rename(columns={'FLownPassengers': 'FlownPassengers'})
+        df = df.rename(columns={'FLownPassengers': 'FlownPassengers'})
 
+        # convert strings to unique integers
         df['DepartureAirport'] = pd.factorize(df['DepartureAirport'])[0]
         df['ArrivalAirport'] = pd.factorize(df['ArrivalAirport'])[0]
         df['Route'] = pd.factorize(df['Route'])[0]
         df['DepartureDate'] = pd.factorize(df['DepartureDate'])[0]
-
-        # Convert 'DepartureDate' column to datetime format
-        # df['DepartureDate'] = pd.to_datetime(df['DepartureDate'], format='%d/%m/%Y')
 
         df.to_csv(output_file, index=False)
         print(f"Data has been successfully split and saved to {output_file}")
