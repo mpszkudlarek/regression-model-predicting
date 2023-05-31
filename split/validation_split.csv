@@ -1,4 +1,4 @@
-DepartureDate,DepartureYear,DepartureMonth,DepartureDay,FlightNumber,DepartureAirport,ArrivalAirport,Route,ActualFlightTime,ActualTotalFuel,FLownPassengers,BagsCount,FlightBagsWeight
+DepartureDate,DepartureYear,DepartureMonth,DepartureDay,FlightNumber,DepartureAirport,ArrivalAirport,Route,ActualFlightTime,ActualTotalFuel,FlownPassengers,BagsCount,FlightBagsWeight
 0,2016,11,1,6003,0,0,0,84,3630,185.0,43.0,560.0
 0,2016,11,1,6004,1,1,1,86,3690,188.0,0.0,0.0
 0,2016,11,1,6542,0,2,2,100,4390,168.0,55.0,720.0
