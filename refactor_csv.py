@@ -35,14 +35,14 @@ def split_and_save_data(input_file, output_file):
         df.to_csv(output_file, index=False)
         print(f"Data has been successfully split and saved to {output_file}")
 
-        directory = 'split'
+        directory = 'input_refactor'
         if not os.path.exists(directory):
             os.makedirs(directory)
-            print("Directory 'split' created successfully.")
+            print("Directory 'input_refactor' created successfully.")
 
         destination_path = os.path.join(directory, output_file)
         shutil.move(output_file, destination_path)
-        print(f"File '{output_file}' moved to the 'split' directory.")
+        print(f"File '{output_file}' moved to the 'input_refactor' directory.")
 
     except FileNotFoundError:
         print(f"File not found: {input_file}")
@@ -50,5 +50,5 @@ def split_and_save_data(input_file, output_file):
         print(f"An error occurred: {str(e)}")
 
 
-split_and_save_data('training.csv', 'training_split.csv')
-split_and_save_data('validation.csv', 'validation_split.csv')
+split_and_save_data('input/training.csv', 'training_refactor.csv')
+split_and_save_data('input/validation.csv', 'validation_refactor.csv')
