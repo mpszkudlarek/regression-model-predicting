@@ -3,7 +3,7 @@ import os
 import shutil
 
 
-# Count the number of breaks (line breaks, spaces, or tabs) in a line
+# Count the number of breaks (spaces, or tabs) in a line
 def count_breaks(line):
     return line.count(' ') + line.count('\t')
 
@@ -20,22 +20,25 @@ def split_and_save_data(input_file, output_file):
                 if count_breaks(line) != expected_count:
                     print(f"Missing data in '{input_file}'\n")
                     return
-
+        # Read the file into a dataframe, select seperator as tab and replace null values with 0
         df = pd.read_csv(input_file, sep='\t', na_values='(null)').fillna(0)
 
-        # typo in FlownPassengers column name
+        # Change typo in FlownPassengers column name to match the other column names
         df = df.rename(columns={'FLownPassengers': 'FlownPassengers'})
 
-        # convert strings to unique integers
+        # Convert strings to unique integers
         df['DepartureAirport'] = pd.factorize(df['DepartureAirport'])[0]
         df['ArrivalAirport'] = pd.factorize(df['ArrivalAirport'])[0]
         df['Route'] = pd.factorize(df['Route'])[0]
         df['DepartureDate'] = pd.factorize(df['DepartureDate'])[0]
 
+        # Save the dataframe to a new csv file
         df.to_csv(output_file, index=False)
         print(f"Data has been successfully split and saved to {output_file}")
 
+        # Create a new  directory and move the file to it
         directory = 'input_refactor'
+        # Check if directory exists if not create it
         if not os.path.exists(directory):
             os.makedirs(directory)
             print("Directory 'input_refactor' created successfully.")
