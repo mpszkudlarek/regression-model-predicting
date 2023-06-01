@@ -38,7 +38,7 @@ def split_and_save_data(input_file, output_file):
 
         # Create a new  directory and move the file to it
         directory = 'input_refactor'
-        # Check if directory exists if not create it
+        # Check if directory exists, if not create it
         if not os.path.exists(directory):
             os.makedirs(directory)
             print("Directory 'input_refactor' created successfully.")
